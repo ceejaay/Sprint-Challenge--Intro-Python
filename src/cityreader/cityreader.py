@@ -20,10 +20,11 @@ import csv
 # print(data)
 
 # with open('cities.csv', newline='') as data:
-#     reader = csv.DictReader(data)
+#     reader = csv.reader(data, delimiter=',')
+#     next(reader)
 #     for row in reader:
-#         print(row)
-        # print(f" these are teh cities: {row['city']}, {row['lat']}, {row['lng']}")
+#         # print(row)
+#         print(f" these are teh cities: {row[0]}, {row[3]}, {row[4]}")
 
 class City():
     def __init__(self, name, lat, lng):
@@ -40,12 +41,11 @@ def cityreader(cities=[]):
   # `cities` list
 
     with open('cities.csv', newline='') as data:
-        fieldnames = ['city', 'lat', 'lng']
-        reader = csv.DictReader(data, fieldnames)
+        reader = csv.reader(data, delimiter=',')
         # cities = [City(row['city'], row['lat'], row['lng']) for row in reader]
-
+        next(reader)
         for row in reader:
-            cities.append(City(row['city'], row['lat'], row['lng']))
+            cities.append(City(row[0], row[3], row[4]))
 
     return cities
 
@@ -54,12 +54,13 @@ cityreader(cities)
 
 
 # for item in cities:
-#     print(item.name)
+#     print(f"{item.name}, {item.lat}, {item.lng}")
 
 # print(cities[-1].name)
 # Print the list of cities (name, lat, lon), 1 record per line.
-# for c in cities:
-#     print(f"{c.name}, {c.lat}, {c.lng}")
+# print(cities[-1].name)
+for c in cities:
+    print(f"{c.name}, {c.lat}, {c.lng}")
 
 # STRETCH GOAL!
 #
