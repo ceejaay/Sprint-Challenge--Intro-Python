@@ -43,8 +43,10 @@ def cityreader(cities=[]):
     with open('cities.csv', newline='') as data:
         reader = csv.reader(data, delimiter=',')
         # cities = [City(row['city'], row['lat'], row['lng']) for row in reader]
+        print(next(reader))
         next(reader)
         for row in reader:
+            print(row[0])
             cities.append(City(row[0], row[3], row[4]))
 
     return cities
